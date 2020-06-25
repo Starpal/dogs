@@ -15,12 +15,12 @@ axiosInstance.interceptors.response.use(
   }
 );
 
-export const getAllBreeds =() => {
-  return axiosInstance.get("/breeds/list/all");
+export const getAllBreeds = async() => {
+  return await axiosInstance.get('/breeds/list/all');
 }
 
-export const getBreedImages =(breedName) => {
-    return axiosInstance.get(`/breed/${breedName}/images`);
+export const getBreedImages = async(breedName) => {
+    return await axiosInstance.get(`/breed/${breedName}/images`);
   }
 
  

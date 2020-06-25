@@ -12,26 +12,17 @@ const App = () => {
     dispatch(apiCallRequest());
   };
 
-  useEffect(function () {
+  useEffect (() => {
     getBreedsList();
 }, []);
     
     return (
       <div className="App">
+ <h1>Dogs</h1>
+  </div>
+  )
+  }
 
-
-     {BreedsList.map((dog, index) => (
-        <div key={index} dog={dog} fetching={true}>
-        {dog}
-        </div>
-     )
-       
-       )}
-
-
-    </div>
-  );
-}
 
 
 export default App;

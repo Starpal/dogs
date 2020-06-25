@@ -2,7 +2,7 @@ import { API_DATA_REQUEST, API_DATA_RECEIVED, API_DATA_FAILED } from '../constan
 
 const initialState = {
     fetching: false,
-    dog: null,
+    dog: [],
     error: null
 };
 
@@ -12,7 +12,8 @@ export function reducer(state = initialState, {type, payload}) {
         case API_DATA_REQUEST:
             return { ...state, fetching: true, error: null };
         case API_DATA_RECEIVED:
-            return { ...state, fetching: false, dog: payload};
+            payload.sort((a, b) => Object.values(b) - Object.values(a))
+            return { ...state, fetching: false, dog: payload.slice(0, 10)};
         case API_DATA_FAILED:
             return { ...state, fetching: false, dog: null, error: payload};
         default:
