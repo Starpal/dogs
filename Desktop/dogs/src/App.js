@@ -1,28 +1,43 @@
 import React, { useEffect } from "react";
 import "./App.css";
-import { connect, useDispatch, useSelector } from "react-redux";
-import {apiCallRequest} from "./actions/actions";
-import BreedsList from "./components/BreedsList";
+import { useDispatch, useSelector } from "react-redux";
+import { apiCallRequest } from "./actions/actions";
+import { Chart } from "react-google-charts";
 
 const App = () => {
-
   const dispatch = useDispatch();
-  const { fetching, dog, error } = useSelector((state) => state);
+  const { dog } = useSelector((state) => state);
   const getBreedsList = () => {
     dispatch(apiCallRequest());
   };
 
-  useEffect (() => {
+  useEffect(() => {
     getBreedsList();
-}, []);
-    
-    return (
-      <div className="App">
- <h1>Dogs</h1>
-  </div>
-  )
-  }
+  }, []);
 
+  const pieChartArr = [["Breed", "Number of images"]];
+  dog.map((dog) => {
+    for (let [key, value] of Object.entries(dog)) {
+      pieChartArr.push([key, value]);
+    }
+  });
 
+  return (
+    <div className="App">
+      <h1>Dogs</h1>
+      <Chart
+        width={"800px"}
+        height={"600px"}
+        chartType="PieChart"
+        loader={<div>Loading Chart</div>}
+        data={pieChartArr}
+        options={{
+          title: "Top 10 Breeds with highest number of images.",
+        }}
+        rootProps={{ "data-testid": "1" }}
+      />
+    </div>
+  );
+};
 
 export default App;
