@@ -1,10 +1,10 @@
 import { takeLatest, call, put, all } from "redux-saga/effects";
 import * as actions from "../actions/actions";
 import * as api from "../fetchAPI/API";
-import { API_DATA_REQUEST} from "../constants/constants";
+import { API_CALL_REQUEST } from "../constants/constants";
 
 export function* watcherSaga() {
-  yield takeLatest(API_DATA_REQUEST, workerSaga);
+  yield takeLatest(API_CALL_REQUEST, workerSaga);
 }
 
 function* workerSaga() {

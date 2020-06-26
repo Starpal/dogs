@@ -29,7 +29,7 @@ const App = () => {
         width={"800px"}
         height={"600px"}
         chartType="PieChart"
-        loader={<div>Loading Chart</div>}
+        loader={<div><i>Loading Chart</i></div>}
         data={pieChartArr}
         options={{
           title: "Top 10 Breeds with highest number of images.",

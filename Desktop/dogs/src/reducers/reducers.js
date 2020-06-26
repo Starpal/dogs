@@ -1,4 +1,4 @@
-import { API_DATA_REQUEST, API_DATA_RECEIVED, API_DATA_FAILED } from '../constants/constants'
+import { API_CALL_REQUEST, API_CALL_SUCCESS, API_CALL_FAILED } from '../constants/constants'
 
 const initialState = {
     fetching: false,
@@ -9,12 +9,12 @@ const initialState = {
 // the reducer
 export function reducer(state = initialState, {type, payload}) {
     switch (type) {
-        case API_DATA_REQUEST:
+        case API_CALL_REQUEST:
             return { ...state, fetching: true, error: null };
-        case API_DATA_RECEIVED:
+        case API_CALL_SUCCESS:
             payload.sort((a, b) => Object.values(b) - Object.values(a))
             return { ...state, fetching: false, dog: payload.slice(0, 10)};
-        case API_DATA_FAILED:
+        case API_CALL_FAILED:
             return { ...state, fetching: false, dog: null, error: payload};
         default:
             return state;
